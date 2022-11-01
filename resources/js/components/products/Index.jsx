@@ -56,6 +56,20 @@ const Index = () => {
         })
     }
 
+    /* Filtrer les resultats */
+    const [query, setQuery] = useState("");
+    /* console.log(products.filter(products=>products.name.toLowerCase().includes("p"))); */
+    const keys = ["name", "type"]
+    /* console.log(products[0]["name"]) */
+
+    const search = (data)=>{
+        return data.filter((products) =>
+                /* products.name.toLowerCase().includes(query) ||
+                products.type.toLowerCase().includes(query)) */
+                keys.some((key) => products[key].toLowerCase().includes(query))
+        )
+    }
+
     return (
         <div className="container">
             <div className="products_list">
@@ -74,7 +88,8 @@ const Index = () => {
                     type="text"
                     name="search-bar"
                     className="search-bar"
-                    placeholder="Search..."
+                    placeholder="Search by name or type..."
+                    onChange={e=> setQuery(e.target.value)}
                 />
                 <div className="table">
                     <div className="list_header">
@@ -86,7 +101,7 @@ const Index = () => {
                     </div>
                     {
                         products.length > 0 && (
-                            products.map((item, key)=>(
+                            products.filter((products) => keys.some((key) => products[key].toLowerCase().includes(query))).map((item, key)=>(
                                 <div className="list_items" key={key}>
                                     <img src={`/upload/${item.photo}`} height="40px" alt="" />
                                     <a>{item.name}</a>
