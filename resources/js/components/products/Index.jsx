@@ -50,7 +50,7 @@ const Index = () => {
                         getProducts()
                     })
                     .catch(()=>{
-                        
+
                     })
             }
         })
@@ -69,7 +69,13 @@ const Index = () => {
                         </div>
                     </div>
                 </div>
-
+                <p>Search</p>
+                <input
+                    type="text"
+                    name="search-bar"
+                    className="search-bar"
+                    placeholder="Search..."
+                />
                 <div className="table">
                     <div className="list_header">
                         <p>Image</p>
